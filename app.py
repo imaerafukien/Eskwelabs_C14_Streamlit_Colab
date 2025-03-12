@@ -49,6 +49,9 @@ elif menu == "Introduction":
     st.title("Introduction")
     st.write("Project background and objectives.")
 
+    df = [{'A': 1, 'B':2, 'C':3}]
+    st.dataframe(df)
+'''
     # Upload an image (stored in images/)
     uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
     if uploaded_file:
@@ -56,7 +59,7 @@ elif menu == "Introduction":
             f.write(uploaded_file.getbuffer())
         st.success("Image saved!")
         st.image(uploaded_file, use_column_width=True)
-
+'''
 # Methodology Section
 elif menu == "Methodology":
     st.title("Methodology")
