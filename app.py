@@ -169,8 +169,31 @@ elif menu == "Results":
     height=400
     )
     st.altair_chart(chart, use_container_width=True)
-    st.caption("Most transactions are in the shopping & micellaneous category followed by home & family tied with food & essentials")
+    st.caption("Most transactions are in the shopping & micellaneous category followed by food & essentials, then by home & family category")
     st.divider()
+    # create line chart of 'trans_num' count by month for year 2020 and 2021 with Jan - Dec on the x-axis and 'trans_num' count on the y-axis, use alt
+    st.subheader("Customer Transaction Count per Year")
+    df['trans_date'] = pd.to_datetime(df['trans_date'], format='%d/%m/%Y')
+    df['year'] = df['trans_date'].dt.year
+    df['month'] = df['trans_date'].dt.month
+    df_2020 = df[df['year'] == 2020]
+    df_2021 = df[df['year'] == 2021]
+    df_2020 = df_2020.groupby('month')['trans_num'].count().reset_index()
+    df_2021 = df_2021.groupby('month')['trans_num'].count().reset_index()
+    df_2020['year'] = 2020
+    df_2021['year'] = 2021
+    df_2020.columns = ['month', 'trans_num', 'year']
+    df_2021.columns = ['month', 'trans_num', 'year']
+    df_2020_2021 = pd.concat([df_2020, df_2021])
+    chart = alt.Chart(df_2020_2021).mark_bar.encode(
+        x=alt.X('month:O', title='Month'),
+        y=alt.Y('trans_num:Q', title='Transaction Count'),
+        color=alt.Color('year:N', title='Year', scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e'])),
+        tooltip=['month', 'trans_num']
+    ).properties(
+        width=600,
+        height=400
+    )
     
 
 
