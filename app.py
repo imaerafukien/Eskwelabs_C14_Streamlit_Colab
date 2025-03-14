@@ -185,7 +185,7 @@ elif menu == "Results":
     df_2020.columns = ['month', 'trans_num', 'year']
     df_2021.columns = ['month', 'trans_num', 'year']
     df_2020_2021 = pd.concat([df_2020, df_2021])
-    chart = alt.Chart(df_2020_2021).mark_bar.encode(
+    chart = alt.Chart(df_2020_2021).mark_bar().encode(
         x=alt.X('month:O', title='Month'),
         y=alt.Y('trans_num:Q', title='Transaction Count'),
         color=alt.Color('year:N', title='Year', scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e'])),
