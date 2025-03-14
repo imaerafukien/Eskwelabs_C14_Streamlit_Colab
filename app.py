@@ -314,14 +314,14 @@ elif menu == "Results":
                                             value_name='normalized_mean')
 
     # Create faceted bar chart with reduced width per facet
-    chart = alt.Chart(cluster_means_long).mark_bar(size=10).encode(
+    chart = alt.Chart(cluster_means_long).mark_bar(size=20).encode(
         x=alt.X('labels_rfm_clustering:N', title='Cluster Label'),
         y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
         color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
         column=alt.Column('metric:N', title='Metric', 
                           sort=['recency', 'frequency', 'total_amt', 'avg_spend', "tenure", "clv", "city_pop"])
     ).properties(
-        width=60,  # Reduced from 150 to 60 for narrower facets
+        width=150,  # Reduced from 150 to 60 for narrower facets
         height=300,
         title='Normalized Mean Metrics by Cluster'
     ).configure_axis(
@@ -333,8 +333,8 @@ elif menu == "Results":
     st.altair_chart(chart, use_container_width=False)
 
     # Debug: Show the data
-    st.write("Cluster Means (Normalized):")
-    st.write(cluster_means_long)
+    #st.write("Cluster Means (Normalized):")
+    #st.write(cluster_means_long)
 
 
 # Recommendations Section
