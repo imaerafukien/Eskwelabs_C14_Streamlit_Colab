@@ -58,7 +58,7 @@ if menu == "Overall":
     plt.ylabel('Transaction Count')
     plt.title('2020 vs 2021 Transaction Count by Month')
     plt.savefig('plots/overall_plot.png')
-    st.image('plots/overall_plot.png', use_container_width=True)
+    st.image('plots/overall_plot.png', width=5)
 
     st.write("“What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?”")
     st.write("“How can we strategically target underserved markets or demographics to acquire new customers and grow our market share?”")
