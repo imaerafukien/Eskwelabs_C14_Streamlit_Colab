@@ -313,7 +313,7 @@ elif menu == "Results":
                                             value_name='normalized_mean')
 
     # Create faceted bar chart with reduced width per facet
-    chart = alt.Chart(cluster_means_long).mark_bar().encode(
+    chart = alt.Chart(cluster_means_long).mark_bar(size=10).encode(
         x=alt.X('labels_rfm_clustering:N', title='Cluster Label'),
         y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
         color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
