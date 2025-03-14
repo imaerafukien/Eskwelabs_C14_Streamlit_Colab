@@ -378,11 +378,11 @@ elif menu == "Proof of Concept":
     st.markdown("""
     - **User Input**  \nCustomers enter income and spending habits via the app or website.
 
-    - **Customer Segmentation**: Segment customers based on their spending behavior or banking transactions.
+    - **Data Processing**  \nThe system processes customer data using regression model.
 
-    - **Analysis & Initial Recommendation**: Provide initial recommendation for CC expansion based on customer segmentation results
+    - **Tailored Recommendation**  \nBest credit card options are suggested.
 
-    - **Future Project Recommendation**: Generate proof-of-concept (POC) for future project recommendation to provide better CC offerings for customers.
+    - **Application Next Steps**  \nCustomers can apply immediately or request a callback.
 
     """)
 
