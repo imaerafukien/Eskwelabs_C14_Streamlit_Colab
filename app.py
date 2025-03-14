@@ -221,6 +221,15 @@ elif menu == "Results":
         height=400,
         title='Transaction Counts by Month (2020-2021)'
     )
+    # Check chart object
+    st.write("Chart object created:", chart is not None)
+
+    # Try rendering a simple chart to test Altair/Streamlit
+    simple_chart = alt.Chart(df_2020_2021).mark_point().encode(
+        x='month_name:N',
+        y='trans_count:Q'
+    )
+    st.altair_chart(simple_chart, use_container_width=True)
     st.altair_chart(chart, use_container_width=True)
 
 
