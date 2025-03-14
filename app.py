@@ -42,7 +42,7 @@ if menu == "Overall":
     st.write("For most of 2021, Adobo Bank had sustained growth. In November, usage of their cards decreased significantly.")
 
 
-    df = pd.read_csv('data/cc_clean.csv')
+    #df = pd.read_csv('data/cc_clean.csv')
     # create img of line plot of 2020 transaction count vs 2021 transaction count of df by month from jan to dec, convert month number and use 3 letters for months in the label
     df['trans_datetime'] = pd.to_datetime(df['trans_datetime'])
     df['trans_month'] = df['trans_datetime'].dt.month
