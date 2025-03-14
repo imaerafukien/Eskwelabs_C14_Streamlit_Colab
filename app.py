@@ -343,7 +343,7 @@ elif menu == "Results":
     st.subheader("Cluster Analysis")
     st.write("We labeled each cluster according to their spending habit")
     data = {
-    'Cluster': ['Smart Essentials Spender', 'Luxury Essentials Enthusiast', 'Premium Shopper & Leisure Seeker'],
+    'Cluster Label': ['Smart Essentials Spender', 'Luxury Essentials Enthusiast', 'Premium Shopper & Leisure Seeker'],
     'Recency': ['Frequent purchases', 'Very frequent purchases', 'Infrequent purchases'],
     'Frequency': ['High transactions', 'Very high transactions', 'Low transactions'],
     'Total Amount Spent': ['Moderate spend', 'High spend', 'Lower total, high per transaction'],
