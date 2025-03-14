@@ -111,13 +111,15 @@ elif menu == "Results":
     #map age profile of acct_num in df by using date of birth(dob) column to their respective generation "Greatest": 1901-1927, "Silent": 1928-1945, "Baby Boomer": 1946-1964, "Gen X": 1965-1981
     df['age'] = 2022 - pd.to_datetime(df['dob'], format='%d/%m/%Y').dt.year
     df['yob'] = pd.to_datetime(df['dob'], format='%d/%m/%Y').dt.year
-    yob_df = df.groupby('acct_num')['yob'].max()
+    yob_df = df.groupby('acct_num').agg('yob':'max','age':'max')
     yob_df = yob_df.reset_index()
     rfm_df = rfm_df.merge(yob_df[['acct_num','yob']], on='acct_num', how='left')
     rfm_df['generation'] = pd.cut(rfm_df['yob'], bins=[1901, 1927, 1945, 1964, 1981], labels=['Greatest', 'Silent', 'Baby Boomer', 'Gen X'])
     #generate bar graph showing acct_num count by generation
     st.subheader("Customer Age Profile")
     st.bar_chart(rfm_df['generation'].value_counts())
+    st.caption("Out of 88 unique customers, majority of Adobo Bank Customers belong in the Baby Boomer Generation (52 customers). ")
+    st.divider()
 
 # Recommendations Section
 elif menu == "Recommendations":
