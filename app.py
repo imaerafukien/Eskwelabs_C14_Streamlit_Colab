@@ -301,39 +301,48 @@ elif menu == "Results":
     st.caption("Only numerical features were used for clustering: recency, frequency, total_amt, avg_spend, tenure, clv, city_pop ")
     cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
                                                          "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
-    # show cluster means
-    st.write(cluster_means)
-    # Normalize means to 0-1 for better comparison
-    for col in ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]:
-        cluster_means[col] = (cluster_means[col] - cluster_means[col].min()) / (cluster_means[col].max() - cluster_means[col].min())
+
+    # Normalize means to 0-1, inverting recency
+    metrics = ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]
+    for col in metrics:
+        if col == "recency":
+            # Invert recency: higher normalized value = more recent (lower raw value)
+            cluster_means[col] = (cluster_means[col].max() - cluster_means[col]) / (cluster_means[col].max() - cluster_means[col].min())
+        else:
+            # Standard normalization: higher raw value = higher normalized value
+            cluster_means[col] = (cluster_means[col] - cluster_means[col].min()) / (cluster_means[col].max() - cluster_means[col].min())
 
     # Melt to long format
     cluster_means_long = cluster_means.melt(id_vars=['labels_rfm_clustering'], 
-                                            value_vars=["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"],
+                                            value_vars=metrics,
                                             var_name='metric', 
                                             value_name='normalized_mean')
 
-    # Create faceted bar chart with reduced width per facet
-    chart = alt.Chart(cluster_means_long).mark_bar(size=20).encode(
+    # Create faceted bar chart with narrower bars
+    chart = alt.Chart(cluster_means_long).mark_bar(size=10).encode(
         x=alt.X('labels_rfm_clustering:N', title='Cluster Label'),
         y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
         color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
         column=alt.Column('metric:N', title='Metric', 
                           sort=['recency', 'frequency', 'total_amt', 'avg_spend', "tenure", "clv", "city_pop"])
     ).properties(
-        width=150,  # Reduced from 150 to 60 for narrower facets
+        width=40,  # Narrow facet width
         height=300,
-        title='Normalized Mean Metrics by Cluster'
+        title='Normalized Mean Metrics by Cluster (Recency Inverted)'
     ).configure_axis(
         labelAngle=0  # Horizontal labels
-    ).interactive()  # Add zooming/panning
+    ).configure_range(
+        category={'step': 20}  # Reduce spacing between bars
+    ).configure_facet(
+        spacing=5  # Reduce spacing between facets
+    )
 
-    # Display in Streamlit
-    st.subheader("K-Means Clustering: Mean Metrics by Cluster")
+    # Display in Streamlit with fixed width
+    st.subheader("K-Means Clustering: Mean Metrics by Cluster (Inverted Recency)")
     st.altair_chart(chart, use_container_width=False)
 
     # Debug: Show the data
-    #st.write("Cluster Means (Normalized):")
+    #st.write("Cluster Means (Normalized, Recency Inverted):")
     #st.write(cluster_means_long)
 
 
