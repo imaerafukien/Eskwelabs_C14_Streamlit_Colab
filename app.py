@@ -46,7 +46,7 @@ if menu == "Overall":
         st.image(logo_path, width = 600)
     else:
         st.warning("No image file found. Please add an image to `images/` directory.")
-    st.subheader("What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?")
+    st.caption("What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?")
     st.subheader("How can we strategically target underserved markets or demographics to acquire new customers and grow our market share?")
 
 
