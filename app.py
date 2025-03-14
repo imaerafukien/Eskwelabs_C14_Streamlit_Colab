@@ -353,8 +353,11 @@ elif menu == "Results":
     'City Population': ['Large cities', 'Mid-sized cities', 'Mid-sized cities']
     }
 
+
     # Create DataFrame with string descriptions
     rfm_df_string = pd.DataFrame(data)
+    rfm_df_string.iloc[[0,1]] = rfm_df_string.iloc[[1,0]]
+    rfm_df_string.iloc[[1,2]] = rfm_df_string.iloc[[2,1]]
     st.table(rfm_df_string)
     st.subheader("Credit Card Expansion Recommendation")
     st.info("**Smart Essentials Spender (Elite Rewards Card)**  \nFrequent spender on everyday necessities, values cashback and rewards for recurring purchases. Best suited for individuals who optimize spending for long-term savings and rewards.")
@@ -383,7 +386,7 @@ elif menu == "Proof of Concept":
     - **Tailored Recommendation**  \nBest credit card options are suggested.
 
     - **Application Next Steps**  \nCustomers can apply immediately or request a callback.
-    
+
     """)
 
 # Footer
