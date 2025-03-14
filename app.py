@@ -376,14 +376,14 @@ elif menu == "Proof of Concept":
     st.divider()
     st.subheader("Credit Card Recommendation System")
     st.markdown("""
-    
-    - **User Input**  \nCustomers enter income and spending habits via the app or website.
 
-    - **Data Processing**  \nThe system processes customer data using regression model.
+    - **User Input** \nCustomers enter income and spending habits via the app or website.
 
-    - **Tailored Recommendation**  \nBest credit card options are suggested.
+    - **Data Processing** \nThe system processes customer data using regression model.
 
-    - **Application Next Steps**  \nCustomers can apply immediately or request a callback.
+    - **Tailored Recommendation** \nBest credit card options are suggested.
+
+    - **Application Next Steps** \nCustomers can apply immediately or request a callback.
 
     """)
 
