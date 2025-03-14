@@ -387,12 +387,16 @@ elif menu == "Proof of Concept":
     "<h3 style='text-align: center;'>Machine Learning Classification Model for Personalized Credit Card Type Recommendations</h3>",
     unsafe_allow_html=True
     )
-    st.markdown("""**Demographic Profile**\n
-      - Age
-      - Age Group/Generation
-      - Date of Birth
-      - Home Address/Transaction Location""")
+    with st.expander("**Demographic Profile**"):
+      st.markdown("- Age")
+      st.markdown(" Age Group/Generation")
+      st.markdown("- Date of Birth")
+      st.markdown("- Home Address/Transaction Location")    
     with st.expander("**Financial Profile**"):
+      st.markdown("- Occupation")
+      st.markdown("- Monthly Income")
+      st.markdown("- Assets")
+      st.markdown("- Liabilities")
       st.markdown("occupation, monthly income, assets, liabilities")
     with st.expander("**Spending Habits**"):
       st.markdown("transaction recency, tenure & frequency, amount spending, transaction categories, customer lifetime value")
