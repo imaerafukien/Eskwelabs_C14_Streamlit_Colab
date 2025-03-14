@@ -55,9 +55,13 @@ elif menu == "Introduction":
     st.subheader("Adobo Bank wants to expand their current CC offerings by understanding their customer segments.")
     st.markdown("""
     - **Demographic Profiles and Spending Behavior**: Understand our customers better through exploratory data analysis and RFM analysis.
+
     - **Customer Segmentation**: Segment customers based on their spending behavior or banking transactions.
+
     - **Analysis & Initial Recommendation**: Provide initial recommendation for CC expansion based on customer segmentation results
+
     - **Future Project Recommendation**: Generate proof-of-concept (POC) for future project recommendation to provide better CC offerings for customers.
+    
     """)
 
     
