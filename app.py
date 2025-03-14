@@ -382,6 +382,11 @@ elif menu == "Proof of Concept":
     st.markdown("- **Data Processing**  \nThe system processes customer data using regression model.")
     st.markdown("- **Tailored Recommendation**  \nBest credit card options are suggested.")
     st.markdown("- **Application Next Steps**  \nCustomers can apply immediately or request a callback.")
+    st.divider()
+    st.subheader("Machine Learning Classification Model")
+    with st.expander("**Personalized Credit Card Type Recommendations**"):
+      st.info("****  \n")
+
 
 # Footer
 st.sidebar.write("Developed using Streamlit")
