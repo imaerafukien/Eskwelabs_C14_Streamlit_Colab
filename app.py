@@ -301,7 +301,8 @@ elif menu == "Results":
     st.caption("Only numerical features were used for clustering: recency, frequency, total_amt, avg_spend, tenure, clv, city_pop ")
     cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
                                                          "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
-
+    # show cluster means
+    st.write(cluster_means)
     # Normalize means to 0-1 for better comparison
     for col in ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]:
         cluster_means[col] = (cluster_means[col] - cluster_means[col].min()) / (cluster_means[col].max() - cluster_means[col].min())
