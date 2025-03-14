@@ -295,38 +295,41 @@ elif menu == "Results":
     st.caption("There is a clear seasonality in spending behavior")
     st.divider()
 
-    # create visualization for the k means clustering of rfm_df cc_rfm_df.groupby('labels_rfm_clustering')[["recency","frequency","total_amt", "avg_spend", "tenure", "clv", "city_pop"]].mean()
-    # Group by cluster labels and calculate means
+    # Create visualization for the k means clustering
+    st.subheader("Customer Segmentation")
+    st.write("We segmented our customers using the k means clustering algorithm")
+    st.caption("Only numerical features were used for clustering: recency, frequency, total_amt, avg_spend, tenure, clv, city_pop ")
     cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
-                                                            "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
+                                                         "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
 
-    # Debug: Display the aggregated data
-    st.write("Cluster Means:")
-    st.write(cluster_means)
+    # Normalize means to 0-1 for better comparison
+    for col in ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]:
+        cluster_means[col] = (cluster_means[col] - cluster_means[col].min()) / (cluster_means[col].max() - cluster_means[col].min())
 
-    # Melt the DataFrame to long format for easier plotting with Altair
+    # Melt to long format
     cluster_means_long = cluster_means.melt(id_vars=['labels_rfm_clustering'], 
                                             value_vars=["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"],
                                             var_name='metric', 
-                                            value_name='mean_value')
+                                            value_name='normalized_mean')
 
-    # Create a grouped bar chart
+    # Create faceted bar chart
     chart = alt.Chart(cluster_means_long).mark_bar().encode(
         x=alt.X('labels_rfm_clustering:N', title='Cluster Label'),
-        y=alt.Y('mean_value:Q', title='Mean Value'),
+        y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
         color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
         column=alt.Column('metric:N', title='Metric', 
                           sort=['recency', 'frequency', 'total_amt', 'avg_spend', 'tenure', 'clv', 'city_pop']),
-        tooltip=['labels_rfm_clustering', 'metric', 'mean_value']
+        tooltip=['labels_rfm_clustering', 'metric', 'normalized_mean']
     ).properties(
-        width=150,  # Width per facet
-        height=400,
-        title='Mean Metrics by K-Means Cluster'
+        width=100,
+        height=300,
+        title='Normalized Mean Metrics by Cluster'
     ).configure_axis(
-        labelAngle=0  # Horizontal labels
-    )
+        labelAngle=0
+    ).interactive()  # Add zooming/panning
 
-    # Display in Streamlit
+    # Display
+    st.subheader("K-Means Clustering: Mean Metrics by Cluster")
     st.altair_chart(chart, use_container_width=True)
 
 
