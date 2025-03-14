@@ -335,7 +335,7 @@ elif menu == "Results":
     # Display in Streamlit with fixed width
     st.subheader("K-Means Clustering: Mean Metrics by Cluster (Inverted Recency)")
     st.altair_chart(chart, use_container_width=False)
-
+    st.caption("recency was inverted for a more intuitive viewing of the data where higher values are better")
     # Debug: Show the data
     #st.write("Cluster Means (Normalized, Recency Inverted):")
     #st.write(cluster_means_long)
