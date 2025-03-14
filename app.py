@@ -49,13 +49,19 @@ elif menu == "Introduction":
     st.title("Introduction")
     st.write("Project background and objectives.")
 
+    # open cc_clean
     cc_clean_path = os.path.join(data_dir, "cc_clean.csv")
     if os.path.exists(cc_clean_path):
         df = pd.read_csv(cc_clean_path)
         st.dataframe(df)
     else:
         st.warning("No data file found. Please add a CSV file to `data/` directory.")
-    st.dataframe(df)
+
+    # open cc_rfm
+    cc_rfm_path = os.path.join(data_dir, "cc_rfm.csv")
+    if os.path.exists(cc_rfm_path):
+        rfm_df = pd.read_csv(cc_rfm_path)
+        st.dataframe(rfm_df)
     
 # Methodology Section
 elif menu == "Methodology":
