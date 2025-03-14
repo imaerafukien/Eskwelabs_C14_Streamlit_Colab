@@ -406,11 +406,8 @@ elif menu == "Proof of Concept":
     with st.expander("**Customer Segmentation**"):
       st.markdown("- Identify best customer segment through regression model")
     st.divider()
-    st.markdown(
-    "<h4 style='text-align: center;'>Methodology: Our Approach</h4>",
-    unsafe_allow_html=True
-    )
-    st.markdown("1. Data Collection and Preprocessing")
+    st.subheader("Methodology: Our Approach")
+    st.markdown("**1. Data Collection and Preprocessing**")
     st.markdown("2. Statistical and Exploratory Data Analyses")
     st.markdown("3. Model Training")
     st.markdown("4. Model Evaluation and Hyperparameter Tuning")
