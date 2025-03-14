@@ -42,7 +42,7 @@ if menu == "Overall":
     # open logo.png from image_dir
     logo_path = os.path.join(image_dir, "logo.png")
     if os.path.exists(logo_path):
-        st.image(logo_path, use_column_width=True)
+        st.image(logo_path, width = 750)
     else:
         st.warning("No image file found. Please add an image to `images/` directory.")
     st.markdown('**Adobo Bank wants to expand their current CC offerings by understanding their customer segments.**')
