@@ -342,7 +342,7 @@ elif menu == "Results":
     st.divider()
     st.subheader("Cluster Analysis")
     st.write("We labeled each cluster according to their spending habit")
-    st.write(df)
+  
 
 # Recommendations Section
 elif menu == "Recommendations":
