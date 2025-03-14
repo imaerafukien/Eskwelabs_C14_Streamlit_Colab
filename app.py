@@ -89,7 +89,7 @@ elif menu == "Scope & Limitations":
     st.title("Data Preprocessing and Scope & Limitations")
 
     st.subheader("Data Transaction Period")
-    st.markdown("**Customer transactions covered the period January 01, 2020 to December 07, 2021.**")
+    st.write("Customer transactions covered the period January 01, 2020 to December 07, 2021.")
   
     st.subheader("Current Date")
     st.write("Current date set to January 01, 2022.")
