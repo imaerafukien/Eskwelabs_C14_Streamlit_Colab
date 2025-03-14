@@ -128,13 +128,19 @@ elif menu == "Results":
     st.caption("Out of 88 unique customers, majority of Adobo Bank Customers belong in the Baby Boomer Generation (52 customers). ")
     st.caption("All of Adobo Bank's customers are over 52 years old")
     st.divider()
-    # create a horizontal bar graph of value_counts of category_group in df, sort highest to lowest use plt
+    # create a horizontal bar graph of value_counts of category_group in df, sort highest to lowest
     st.subheader("Customer Total Transaction Counts per Category")
-    df['category_group'].value_counts().plot(kind='barh')
-   # st.write(alt.Chart(df).mark_bar().encode(
-    #x=alt.X('category', sort=None),
-    #y='sports_teams',
-    #))
+    counts_df = df['category_group'].value_counts().reset_index()
+    counts_df.columns = ['category_group', 'count']
+    chart = alt.Chart(counts_df).mark_bar().encode(
+    x=alt.X('count:Q', title='Transaction Count'),
+    y=alt.Y('category_group:N', sort='-x', title='Category Group'),
+    tooltip=['category_group', 'count']
+    ).properties(
+    width=600,
+    height=400
+    )
+    st.altair_chart(chart, use_container_width=True)
     st.caption("Most transactions are in the shopping & micellaneous category followed by home & family, then food & essentials")
     st.divider()
     
