@@ -407,11 +407,16 @@ elif menu == "Proof of Concept":
       st.markdown("- Identify best customer segment through regression model")
     st.divider()
     st.subheader("Methodology: Our Approach")
-    st.markdown("**1. Data Collection and Preprocessing**")
+    st.markdown("1. Data Collection and Preprocessing")
     st.markdown("2. Statistical and Exploratory Data Analyses")
     st.markdown("3. Model Training")
     st.markdown("4. Model Evaluation and Hyperparameter Tuning")
     st.markdown("5. Beta Testing and Deployment")
+    st.divider()
+    st.subheader("Personalized Credit Card Recommendation Model")
+    st.info("**Model Implementation**  \nThrough bank’s website and mobile apps for seamless customer access")
+    st.info("**Customer Feedback Collection**  \nTo better improve the bank’s products and services")
+    st.info("**Model Refinement and Updates**  \nUtilizing expanding customer transaction data")
 
 
 # Footer
