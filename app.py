@@ -127,7 +127,7 @@ elif menu == "Results":
     st.divider()
     # create a horizontal bar graph of value_counts of category_group in df, sort highest to lowest
     st.subheader("Transaction Category Types")
-    sorted_df = df['category_group'].value_counts().sort_values(ascending=False)
+    sorted_df = df['category_group'].value_counts().sort_values(ascending=True)
     st.bar_chart(sorted_df)
     
 
