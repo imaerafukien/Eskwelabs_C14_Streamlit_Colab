@@ -61,6 +61,24 @@ if menu == "Overall":
     fig.savefig(plot_path)
     st.pyplot(fig)
 
+    # create plot of 2020 transaction count vs 2021 transaction count of df
+    df['trans_datetime'] = pd.to_datetime(df['trans_datetime'])
+    df['trans_year'] = df['trans_datetime'].dt.year
+    df_2020 = df[df['trans_year'] == 2020]
+    df_2021 = df[df['trans_year'] == 2021]
+    df_2020_count = df_2020.groupby('trans_year')['trans_num'].count()
+    df_2021_count = df_2021.groupby('trans_year')['trans_num'].count()
+    fig, ax = plt.subplots()
+    ax.bar(df_2020_count.index, df_2020_count.values, label='2020')
+    ax.bar(df_2021_count.index, df_2021_count.values, label='2021')
+    ax.set_xlabel('Year')
+    ax.set_ylabel('Transaction Count')
+    ax.set_title('Transaction Count by Year')
+    ax.legend()
+    plot_path = os.path.join(plot_dir, "transaction_count_by_year.png")
+    fig.savefig(plot_path)
+    st.pyplot(fig)
+
 # Introduction Section
 elif menu == "Introduction":
     st.title("Introduction")
