@@ -108,6 +108,8 @@ elif menu == "Results":
     st.title("Results")
     st.write("Findings and visualizations.")
 
+    df = pd.read_csv('data/cc_clean.csv')
+    rfm_df = pd.read_csv('data/cc_rfm.csv')
     # map age profile of acct_num in df by using date of birth(dob) column to their respective generation "Greatest": 1901-1927, "Silent": 1928-1945, "Baby Boomer": 1946-1964, "Gen X": 1965-1981
     df['age'] = 2022 - pd.to_datetime(df['dob'], format='%d/%m/%Y').dt.year
     df['yob'] = pd.to_datetime(df['dob'], format='%d/%m/%Y').dt.year
