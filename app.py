@@ -302,7 +302,7 @@ elif menu == "Results":
     cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
                                                          "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
 
-    # Normalize means to 0-1
+    # Normalize means to 0-1 for better comparison
     for col in ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]:
         cluster_means[col] = (cluster_means[col] - cluster_means[col].min()) / (cluster_means[col].max() - cluster_means[col].min())
 
@@ -312,29 +312,24 @@ elif menu == "Results":
                                             var_name='metric', 
                                             value_name='normalized_mean')
 
-    # Create faceted bar chart with narrower bars
-    chart = alt.Chart(cluster_means_long).mark_bar(size=10).encode(  # Set bar width to 10 pixels
+    # Create faceted bar chart with reduced width per facet
+    chart = alt.Chart(cluster_means_long).mark_bar(size=10).encode(
         x=alt.X('labels_rfm_clustering:N', title='Cluster Label'),
         y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
         color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
         column=alt.Column('metric:N', title='Metric', 
                           sort=['recency', 'frequency', 'total_amt', 'avg_spend', "tenure", "clv", "city_pop"])
     ).properties(
-        width=40,  # Further reduced facet width from 60 to 40
+        width=60,  # Reduced from 150 to 60 for narrower facets
         height=300,
         title='Normalized Mean Metrics by Cluster'
     ).configure_axis(
         labelAngle=0  # Horizontal labels
-    ).configure_range(
-        category={'step': 20}  # Reduce spacing between bars
-    ).configure_facet(
-        spacing=5  # Reduce spacing between facets
-    )
+    ).interactive()  # Add zooming/panning
 
-    # Display in Streamlit with fixed width
+    # Display in Streamlit
     st.subheader("K-Means Clustering: Mean Metrics by Cluster")
-    st.altair_chart(chart, use_container_width=False)  # Disable container width stretching
-    # Alternatively, set a fixed width: st.altair_chart(chart.configure_view(width=400), use_container_width=False)
+    st.altair_chart(chart, use_container_width=False)
 
     # Debug: Show the data
     st.write("Cluster Means (Normalized):")
