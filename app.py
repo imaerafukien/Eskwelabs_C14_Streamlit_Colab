@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.express as px
+import seaborn as sns
 import os
 
 # Set page title
@@ -125,7 +125,10 @@ elif menu == "Results":
     st.caption("Out of 88 unique customers, majority of Adobo Bank Customers belong in the Baby Boomer Generation (52 customers). ")
     st.caption("All of Adobo Bank's customers are over 55 years old")
     st.divider()
-    # create a horizontal bar graph using plotly of trans_num value_counts per category_group in df, sort highest to lowest
+    # create a horizontal bar graph of value_counts of category_group in df, sort highest to lowest
+    st.subheader("Transaction Category Types")
+    st.bar_chart(df['category_group'].value_counts().sort_values(ascending=True))
+    
 
 
 
