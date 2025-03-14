@@ -384,7 +384,7 @@ elif menu == "Proof of Concept":
     st.markdown("- **Application Next Steps**  \nCustomers can apply immediately or request a callback.")
     st.divider()
     st.subheader("Machine Learning Classification Model")
-    st.markdown(
+    st.info(
     "<h3 style='text-align: center;'>Personalized Credit Card Type Recommendations</h3>",
     unsafe_allow_html=True
     )
