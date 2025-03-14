@@ -39,15 +39,14 @@ else:
 # Overall Section
 if menu == "Overall":
     st.title("Overall Summary")
-    st.subheader('Adobo Bank wants to expand their current CC offerings by understanding their customer segments.')
+    st.subheader('Adobo Bank is a bank diving into data driven decision making. We as their data scientist team will provide insights and recommendations based on Adobo Bank\'s data')
     # open logo.png from image_dir
     logo_path = os.path.join(image_dir, "logo.png")
     if os.path.exists(logo_path):
         st.image(logo_path, width = 600)
     else:
         st.warning("No image file found. Please add an image to `images/` directory.")
-    st.write("What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?")
-    st.write("How can we strategically target underserved markets or demographics to acquire new customers and grow our market share?")
+    st.write("We aim to know who are Adobo Bank's customers, what the bank's current data quality is, how to improve data gathering and from their current set of data, how can we contribute to Adobo Bank's growth?")
 
 
 # Introduction Section
@@ -63,10 +62,11 @@ elif menu == "Methodology":
     st.write("Describe the approach, techniques, and tools used.")
 
     st.markdown("""
-    - **Step 1**: Data Collection
-    - **Step 2**: Data Cleaning
-    - **Step 3**: Model Training
-    - **Step 4**: Evaluation
+    - **Step 1**: Preprocessing
+    - **Step 2**: Exploratory Data Analysis (EDA)
+    - **Step 3**: K Means Clustering
+    - **Step 4**: Cluster Analysis
+    - **Step 5**: Interpretation and Recommendations
     """)
 
 # Results Section
