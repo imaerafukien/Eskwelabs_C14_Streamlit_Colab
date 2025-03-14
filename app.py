@@ -55,7 +55,7 @@ if menu == "Overall":
     df_2020 = df[df['trans_year'] == 2020]
     df_2021 = df[df['trans_year'] == 2021]
     df_2020_month_count = df_2020.groupby('trans_month')['trans_num'].count()
-    df_2021_month_count = df_2021.groupby('trans_month')['trans_num'].count
+    df_2021_month_count = df_2021.groupby('trans_month')['trans_num'].count()
     df_month_count = pd.concat([df_2020_month_count, df_2021_month_count], axis=1)
     df_month_count.columns = ['2020', '2021']
     df_month_count.plot(kind='line')
