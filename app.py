@@ -123,11 +123,12 @@ elif menu == "Results":
     st.bar_chart(rfm_df['generation'].value_counts())
     st.write(rfm_df['age'].describe())
     st.caption("Out of 88 unique customers, majority of Adobo Bank Customers belong in the Baby Boomer Generation (52 customers). ")
-    st.caption("All of Adobo Bank's customers are over 55 years old")
+    st.caption("All of Adobo Bank's customers are over 52 years old")
     st.divider()
     # create a horizontal bar graph of value_counts of category_group in df, sort highest to lowest
     st.subheader("Transaction Category Types")
-    st.bar_chart(df['category_group'].value_counts().sort_values(ascending=True))
+    sorted_df = df['category_group'].value_counts().sort_values(ascending=False)
+    st.bar_chart(sorted_df)
     
 
 
