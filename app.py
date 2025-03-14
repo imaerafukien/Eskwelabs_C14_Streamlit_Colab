@@ -48,7 +48,7 @@ if menu == "Overall":
         st.image(logo_path, width = 600)
     else:
         st.warning("No image file found. Please add an image to `images/` directory.")
-    st.write("We aim to know who are Adobo Bank's customers, what the bank's current data quality is, how to improve data gathering and from their current set of data, how can we contribute to Adobo Bank's growth?")
+    st.write("We aim to know who Adobo Bank's customers are, what the bank's current data quality is, how to improve data gathering and from their current set of data, how we can contribute to Adobo Bank's growth.")
 
 
 # Introduction Section
@@ -373,6 +373,18 @@ elif menu == "Proof of Concept":
     st.info("**Approach**  \nUse regression analysis to match customers with the best credit card options.")
     st.info("**Channels**  \nAdobo Bank App & Website: New and existing customers can enter their income and spending habits to receive personalized credit card recommendations instantly.")
     st.info("**Benefits**  \nProvide clear credit card options upfront, minimizing consultation time and accelerating customer acquisition.")
+    st.divider()
+    st.subheader("Credit Card Recommendation System")
+    st.markdown("""
+    - **User Input**  \nCustomers enter income and spending habits via the app or website.
+
+    - **Customer Segmentation**: Segment customers based on their spending behavior or banking transactions.
+
+    - **Analysis & Initial Recommendation**: Provide initial recommendation for CC expansion based on customer segmentation results
+
+    - **Future Project Recommendation**: Generate proof-of-concept (POC) for future project recommendation to provide better CC offerings for customers.
+
+    """)
 
 # Footer
 st.sidebar.write("Developed using Streamlit")
