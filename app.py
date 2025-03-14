@@ -230,6 +230,70 @@ elif menu == "Results":
 
     # Display chart
     st.altair_chart(line, use_container_width=True)
+    st.caption("December 2021 data is cut short at Dec 8 which coul be the reason for the sudden drop")
+    st.caption("There is a clear seasonality in spending behavior")
+    st.divider()
+    st.subheader("Total Amount Spent per Month (2020-2021)")
+    df['trans_date'] = pd.to_datetime(df['trans_datetime'])
+    df['year'] = df['trans_date'].dt.year
+    df['month'] = df['trans_date'].dt.month
+
+    # Filter and aggregate total 'amt' per month
+    df_2020 = df[df['year'] == 2020].groupby('month')['amt'].sum().reset_index()
+    df_2021 = df[df['year'] == 2021].groupby('month')['amt'].sum().reset_index()
+    df_2020['year'] = 2020
+    df_2021['year'] = 2021
+    df_2020.columns = ['month', 'total_amt', 'year']
+    df_2021.columns = ['month', 'total_amt', 'year']
+
+    # Ensure all months are present
+    all_months = pd.DataFrame({'month': range(1, 13)})
+    df_2020_full = all_months.merge(df_2020, on='month', how='left').fillna({'total_amt': 0})
+    df_2021_full = all_months.merge(df_2021, on='month', how='left').fillna({'total_amt': 0})
+    df_2020_full['year'] = 2020
+    df_2021_full['year'] = 2021
+
+    # Combine data
+    df_2020_2021 = pd.concat([df_2020_full, df_2021_full])
+
+    # Add month names
+    month_map = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
+                7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
+    df_2020_2021['month_name'] = df_2020_2021['month'].map(month_map)
+
+    # Debug data
+    st.write("Final df_2020_2021:")
+    st.write(df_2020_2021)
+
+    # Ensure data types
+    df_2020_2021['total_amt'] = df_2020_2021['total_amt'].astype(float)  # Keep as float for decimals
+    df_2020_2021['year'] = df_2020_2021['year'].astype(str)
+
+    # Create line chart
+    base = alt.Chart(df_2020_2021).encode(
+        x=alt.X('month_name:N', 
+                title='Month', 
+                sort=list(month_map.values()), 
+                axis=alt.Axis(labelAngle=0)),
+        y=alt.Y('total_amt:Q', title='Total Amount Spent'),
+        tooltip=['month_name', 'total_amt', 'year']
+    )
+
+    line = base.mark_line(point=True).encode(
+        color=alt.Color('year:N', 
+                        title='Year', 
+                        scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e']))
+    ).properties(
+        width=600,
+        height=400,
+        title='Total Amount Spent by Month (2020-2021)'
+    )
+
+    # Display chart
+    st.altair_chart(line, use_container_width=True)
+    st.caption("December 2021 data is cut short at Dec 8 which coul be the reason for the sudden drop")
+    st.caption("There is a clear seasonality in spending behavior")
+    st.divider()
 
 
 
