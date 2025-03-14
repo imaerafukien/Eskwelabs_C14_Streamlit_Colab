@@ -126,7 +126,7 @@ elif menu == "Results":
 
     # Create Altair bar graph
     chart = alt.Chart(gen_counts).mark_bar().encode(
-        x=alt.X('generation:N', title='Generation', sort=['Greatest', 'Silent', 'Baby Boomer', 'Gen X']),
+        x=alt.X('generation:N', title='Generation', sort=['Greatest', 'Silent', 'Baby Boomer', 'Gen X'], axis=alt.Axis(labelAngle=0)),
         y=alt.Y('account_count:Q', title='Number of Accounts'),
         tooltip=['generation', 'account_count']  # Optional: show details on hover
     ).properties(
