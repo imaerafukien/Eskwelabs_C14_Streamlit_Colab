@@ -301,7 +301,7 @@ elif menu == "Results":
     st.caption("Only numerical features were used for clustering: recency, frequency, total_amt, avg_spend, tenure, clv, city_pop ")
     cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
                                                          "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
-
+    st.write(cluster_means)
     # Normalize means to 0-1, inverting recency
     metrics = ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]
     for col in metrics:
