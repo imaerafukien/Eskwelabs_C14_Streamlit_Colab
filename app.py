@@ -53,7 +53,7 @@ elif menu == "Introduction":
     if os.path.exists(cc_clean_path):
         df = pd.read_csv(cc_clean_path)
         st.dataframe(df)
-    else
+    else:
         st.warning("No data file found. Please add a CSV file to `data/` directory.")
     st.dataframe(df)
     
