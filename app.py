@@ -173,33 +173,52 @@ elif menu == "Results":
     st.divider()
     # create line chart of 'trans_num' count by month for year 2020 and 2021 with Jan - Dec on the x-axis and 'trans_num' count on the y-axis, use alt
     st.subheader("Customer Transaction Count per Year")
-    df['trans_date'] = pd.to_datetime(df['trans_datetime'])
+    df['trans_date'] = pd.to_datetime(df['trans_datetime'])  # Ensure trans_datetime is datetime type
     df['year'] = df['trans_date'].dt.year
     df['month'] = df['trans_date'].dt.month
-    df_2020 = df[df['year'] == 2020]
-    df_2021 = df[df['year'] == 2021]
-    df_2020 = df_2020.groupby('month')['trans_num'].count().reset_index()
-    df_2021 = df_2021.groupby('month')['trans_num'].count().reset_index()
+
+    # Filter for 2020 and 2021
+    df_2020 = df[df['year'] == 2020].groupby('month')['trans_num'].count().reset_index()
+    df_2021 = df[df['year'] == 2021].groupby('month')['trans_num'].count().reset_index()
+
+    # Add year column
     df_2020['year'] = 2020
     df_2021['year'] = 2021
-    df_2020.columns = ['month', 'trans_num', 'year']
-    df_2021.columns = ['month', 'trans_num', 'year']
-    df_2020_2021 = pd.concat([df_2020, df_2021])
 
-    # Add month names
+    # Rename columns for consistency
+    df_2020.columns = ['month', 'trans_count', 'year']
+    df_2021.columns = ['month', 'trans_count', 'year']
+
+    # Ensure all months (1-12) are present by creating a full template
+    all_months = pd.DataFrame({'month': range(1, 13)})
+    df_2020_full = all_months.merge(df_2020, on='month', how='left').fillna({'trans_count': 0})
+    df_2021_full = all_months.merge(df_2021, on='month', how='left').fillna({'trans_count': 0})
+    df_2020_full['year'] = 2020
+    df_2021_full['year'] = 2021
+
+    # Combine 2020 and 2021 data
+    df_2020_2021 = pd.concat([df_2020_full, df_2021_full])
+
+    # Add month names for better readability
     month_map = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
                 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
     df_2020_2021['month_name'] = df_2020_2021['month'].map(month_map)
 
-    # Create line chart
-    chart = alt.Chart(df_2020_2021).mark_line().encode(
-        x=alt.X('month_name:N', title='Month', sort=list(month_map.values())),
-        y=alt.Y('trans_num:Q', title='Transaction Count'),
-        color=alt.Color('year:N', title='Year', scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e'])),
-        tooltip=['month_name', 'trans_num', 'year']
+    # Create line chart with Altair
+    chart = alt.Chart(df_2020_2021).mark_line(point=True).encode(
+        x=alt.X('month_name:N', 
+                title='Month', 
+                sort=list(month_map.values()),  # Ensure Jan-Dec order
+                axis=alt.Axis(labelAngle=0)),  # Horizontal labels
+        y=alt.Y('trans_count:Q', title='Transaction Count'),
+        color=alt.Color('year:N', 
+                        title='Year', 
+                        scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e'])),
+        tooltip=['month_name', 'trans_count', 'year']
     ).properties(
         width=600,
-        height=400
+        height=400,
+        title='Transaction Counts by Month (2020-2021)'
     )
     st.altair_chart(chart, use_container_width=True)
 
