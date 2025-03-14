@@ -357,7 +357,7 @@ elif menu == "Results":
     rfm_df_string = pd.DataFrame(data)
     st.table(rfm_df_string)
     st.subheader("Credit Card Expansion Recommendation")
-    st.info("Smart Essentials Spender (Elite Rewards Card)\nFrequent spender on everyday necessities, values cashback and rewards for recurring purchases. Best suited for individuals who optimize spending for long-term savings and rewards.")
+    st.info("**Smart Essentials Spender (Elite Rewards Card)**  \nFrequent spender on everyday necessities, values cashback and rewards for recurring purchases. Best suited for individuals who optimize spending for long-term savings and rewards.")
     st.info("Luxury Essentials Enthusiast (Gold Lifestyle Card)\nHigh-frequency spender who prioritizes premium experiences while maintaining practical spending habits. Prefers a mix of luxury and everyday purchases, benefiting from exclusive perks & travel rewards.")
     st.info("Premium Shopper & Leisure Seeker (Signature Luxe Card)\nSelective, high-value spender focused on luxury shopping, travel, and exclusive experiences. This customer prioritizes premium memberships, concierge services, and elite shopping benefits.")
   
