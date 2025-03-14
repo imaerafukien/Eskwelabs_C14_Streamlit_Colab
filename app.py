@@ -156,6 +156,21 @@ elif menu == "Results":
     st.altair_chart(chart, use_container_width=True)
     st.caption("Most transactions are in the shopping & micellaneous category followed by home & family tied with food & essentials")
     st.divider()
+    # create a horizontal bar chart of sum of 'amt' per 'category_group' in df sorted highest to lowest using alt
+    st.subheader("Customer Total Transaction Amounts per Category")
+    amt_df = df.groupby('category_group')['amt'].sum().reset_index()
+    amt_df.columns = ['category_group', 'amt']
+    chart = alt.Chart(amt_df).mark_bar().encode(
+    x=alt.X('amt:Q', title='Total Transaction Amount'),
+    y=alt.Y('category_group:N', sort='-x', title='Category Group'),
+    tooltip=['category_group', 'amt']
+    ).properties(
+    width=600,
+    height=400
+    )
+    st.altair_chart(chart, use_container_width=True)
+    st.caption("Most transactions are in the shopping & micellaneous category followed by home & family tied with food & essentials")
+    st.divider()
     
 
 
