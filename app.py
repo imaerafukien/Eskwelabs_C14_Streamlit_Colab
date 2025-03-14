@@ -204,7 +204,7 @@ elif menu == "Results":
                 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
     df_2020_2021['month_name'] = df_2020_2021['month'].map(month_map)
     
-    st.write(df_2020_2021.info())
+    st.write(df_2020_2021)
     # Create line chart with Altair
     chart = alt.Chart(df_2020_2021).mark_line(point=True).encode(
         x=alt.X('month_name:N', 
