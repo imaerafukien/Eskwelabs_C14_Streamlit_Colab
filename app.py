@@ -342,6 +342,20 @@ elif menu == "Results":
     st.divider()
     st.subheader("Cluster Analysis")
     st.write("We labeled each cluster according to their spending habit")
+    data = {
+    'Cluster': ['Smart Essentials Spender', 'Luxury Essentials Enthusiast', 'Premium Shopper & Leisure Seeker'],
+    'Recency': ['Frequent purchases', 'Very frequent purchases', 'Infrequent purchases'],
+    'Frequency': ['High transactions', 'Very high transactions', 'Low transactions'],
+    'Total Amount Spent': ['Moderate spend', 'High spend', 'Lower total, high per transaction'],
+    'Avg. Spending per Transaction': ['Low spend per transaction', 'Moderate spend per transaction', 'Very high spend per transaction'],
+    'Tenure': ['Long tenure', 'Very long tenure', 'Shorter tenure'],
+    'Customer Lifetime Value': ['Moderate CLV', 'High CLV', 'Low CLV'],
+    'City Population': ['Large cities', 'Mid-sized cities', 'Mid-sized cities']
+    }
+
+    # Create DataFrame with string descriptions
+    rfm_df_string = pd.DataFrame(data)
+    st.write(rfm_df_string)
   
 
 # Recommendations Section
