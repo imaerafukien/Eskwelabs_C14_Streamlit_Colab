@@ -11,7 +11,7 @@ st.set_page_config(page_title="My Streamlit App", layout="wide")
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
-menu = st.sidebar.radio("Go to", ["Overall", "Introduction", "Methodology", "Scope & Limitations","Results", "Recommendations"])
+menu = st.sidebar.radio("Go to", ["Overall", "Introduction", "Methodology", "Scope & Limitations","Results", "Proof of Concept"])
 
 # Ensure directories exist
 data_dir = "data"
@@ -335,7 +335,7 @@ elif menu == "Results":
     # Display in Streamlit with fixed width
     st.subheader("K-Means Clustering: Mean Metrics by Cluster (Inverted Recency)")
     st.altair_chart(chart, use_container_width=False)
-    st.caption("recency was inverted for a more intuitive viewing of the data where higher values are better")
+    st.caption("Recency was inverted for a more intuitive viewing of the data where higher values are better")
     # Debug: Show the data
     #st.write("Cluster Means (Normalized, Recency Inverted):")
     #st.write(cluster_means_long)
@@ -356,10 +356,17 @@ elif menu == "Results":
     # Create DataFrame with string descriptions
     rfm_df_string = pd.DataFrame(data)
     st.table(rfm_df_string)
+    st.subheader("Credit Card Expansion Recommendation")
+    st.markdown("**Smart Essentials Spender (Elite Rewards Card)**")
+    st.info("Frequent spender on everyday necessities, values cashback and rewards for recurring purchases. Best suited for individuals who optimize spending for long-term savings and rewards.")
+    st.markdown("**Luxury Essentials Enthusiast (Gold Lifestyle Card)**")
+    st.info("High-frequency spender who prioritizes premium experiences while maintaining practical spending habits. Prefers a mix of luxury and everyday purchases, benefiting from exclusive perks & travel rewards.")
+    st.markdown("**Premium Shopper & Leisure Seeker (Signature Luxe Card)**")
+    st.info("Selective, high-value spender focused on luxury shopping, travel, and exclusive experiences. This customer prioritizes premium memberships, concierge services, and elite shopping benefits.")
   
 
-# Recommendations Section
-elif menu == "Recommendations":
+# Proof of Concept Section
+elif menu == "Proof of Concept":
     st.title("Recommendations")
     st.write("Provide insights and future recommendations.")
 
