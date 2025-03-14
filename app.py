@@ -61,7 +61,7 @@ elif menu == "Introduction":
     - **Analysis & Initial Recommendation**: Provide initial recommendation for CC expansion based on customer segmentation results
 
     - **Future Project Recommendation**: Generate proof-of-concept (POC) for future project recommendation to provide better CC offerings for customers.
-    
+
     """)
 
     
@@ -73,10 +73,15 @@ elif menu == "Methodology":
 
     st.markdown("""
     - **Step 1**: Preprocessing
+
     - **Step 2**: Exploratory Data Analysis (EDA)
+
     - **Step 3**: K Means Clustering
+
     - **Step 4**: Cluster Analysis
+
     - **Step 5**: Interpretation and Recommendations
+    
     """)
 
 # Results Section
