@@ -126,10 +126,10 @@ elif menu == "Results":
     st.caption("All of Adobo Bank's customers are over 52 years old")
     st.divider()
     # create a horizontal bar graph of value_counts of category_group in df, sort highest to lowest use plt
-    st.subheader("Transaction Category Types")
-    sorted_df = df['category_group'].value_counts().sort_values(ascending=True)
+    st.subheader("Customer Total Transaction Counts per Category")
+    sorted_df = df['category_group'].value_counts(sort=True, ascending=False)
     st.bar_chart(sorted_df)
-    st.caption()
+    st.caption("Most transactions are in the shopping & micellaneous category followed by home & family, then food & essentials")
     st.divider()
     
 
