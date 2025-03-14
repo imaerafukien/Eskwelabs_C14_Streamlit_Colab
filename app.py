@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import os
 
@@ -41,11 +42,11 @@ if menu == "Overall":
     st.write("This is an overview of the project.")
 
     # Display an image from images folder
-    overall_img_path = os.path.join(image_dir, "logo.png")
-    if os.path.exists(overall_img_path):
-        st.image(overall_img_path, caption="Project Overview", use_container_width=True)
-    else:
-        st.warning("No overview image found. Please add an image to `images/` directory.")
+    #overall_img_path = os.path.join(image_dir, "logo.png")
+    #if os.path.exists(overall_img_path):
+        #st.image(overall_img_path, caption="Project Overview", use_container_width=True)
+    #else:
+        #st.warning("No overview image found. Please add an image to `images/` directory.")
 
     # Example Plot
     x = range(10)
