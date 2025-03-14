@@ -89,17 +89,17 @@ elif menu == "Scope & Limitations":
     st.title("Data Preprocessing and Scope & Limitations")
 
     st.subheader("Data Transaction Period")
-    st.write("Customer transactions covered the period January 01, 2020 to December 07, 2021.")
-    st.divider()
+    st.markdown("**Customer transactions covered the period January 01, 2020 to December 07, 2021.**")
+  
     st.subheader("Current Date")
     st.write("Current date set to January 01, 2022.")
-    st.divider()
+
     st.subheader("Transaction Category Types")
     st.write("Original transaction categories were categorized into 7 transaction types (entertainment, transportation, food & essentials, health & wellness, home & family, shopping & miscellaneous, and others).")
-    st.divider()
+    
     st.subheader("Job Types")
     st.write("Original job entries were categorized into 8 job types (Creative, Media & Design; Education & Training; Engineering & Infrastructure; Finance, Business & Management; Healthcare & Wellbeing; Public Service & Administration; Retail, Hospitality & Customer Service; Science, Technology & IT).")
-    st.divider()
+    
     st.subheader("Customer Lifetime Value (CLV)")
     st.write("Average spending x Frequency / Customer Tenure")
 
