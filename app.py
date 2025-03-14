@@ -383,7 +383,7 @@ elif menu == "Proof of Concept":
     - **Tailored Recommendation**  \nBest credit card options are suggested.
 
     - **Application Next Steps**  \nCustomers can apply immediately or request a callback.
-
+    
     """)
 
 # Footer
