@@ -49,7 +49,7 @@ if menu == "Overall":
         #st.warning("No overview image found. Please add an image to `images/` directory.")
 
     # create plot of 2020 transaction count vs 2021 transaction count of df by month, use words for month like jan, feb, mar, etc.
-    st.write(df.info())
+    df['trans_datettime']
 
 
 # Introduction Section
