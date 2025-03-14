@@ -384,7 +384,7 @@ elif menu == "Proof of Concept":
     st.markdown("- **Application Next Steps**  \nCustomers can apply immediately or request a callback.")
     st.divider()
     st.subheader("Machine Learning Classification Model")
-    with st.expander("**Personalized Credit Card Type Recommendations**"):
+    with st.info("**Personalized Credit Card Type Recommendations**"):
       st.info("****  \n")
 
 
