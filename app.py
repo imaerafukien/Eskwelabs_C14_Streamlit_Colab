@@ -321,7 +321,7 @@ elif menu == "Results":
                           sort=['recency', 'frequency', 'total_amt', 'avg_spend', 'tenure', 'clv', 'city_pop']),
         tooltip=['labels_rfm_clustering', 'metric', 'normalized_mean']
     ).properties(
-        width=100,
+        width=10,
         height=300,
         title='Normalized Mean Metrics by Cluster'
     ).configure_axis(
