@@ -108,6 +108,7 @@ elif menu == "Results":
     st.title("Results")
     st.write("Findings and visualizations.")
 
+    df = pd.read_csv("data/cc_clean.csv")
     #map age profile of acct_num in df by using date of birth(dob) column to their respective generation "Greatest": 1901-1927, "Silent": 1928-1945, "Baby Boomer": 1946-1964, "Gen X": 1965-1981
     df['age'] = 2022 - pd.to_datetime(df['dob']).dt.year
     df['generation'] = pd.cut(df['age'], bins=[1901, 1927, 1945, 1964, 1981], labels=['Greatest', 'Silent', 'Baby Boomer', 'Gen X'])
