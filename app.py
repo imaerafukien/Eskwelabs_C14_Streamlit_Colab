@@ -39,13 +39,13 @@ else:
 # Overall Section
 if menu == "Overall":
     st.title("Overall Summary")
+    st.markdown('**Adobo Bank wants to expand their current CC offerings by understanding their customer segments.**')
     # open logo.png from image_dir
     logo_path = os.path.join(image_dir, "logo.png")
     if os.path.exists(logo_path):
         st.image(logo_path, width = 600)
     else:
         st.warning("No image file found. Please add an image to `images/` directory.")
-    st.markdown('**Adobo Bank wants to expand their current CC offerings by understanding their customer segments.**')
     st.info("“What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?”")
     st.info("“How can we strategically target underserved markets or demographics to acquire new customers and grow our market share?”")
 
