@@ -63,7 +63,9 @@ if menu == "Overall":
     ax.set_ylabel('Transaction Count')
     ax.set_title('2020 vs 2021 Transaction Count by Month')
     ax.legend()
-    st.pyplot(fig)
+    #st.pyplot(fig)
+    # reduce the size of the figure
+    st.pyplot(fig).set_size_inches(8, 6)
 
 # Introduction Section
 elif menu == "Introduction":
