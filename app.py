@@ -48,19 +48,6 @@ if menu == "Overall":
     #else:
         #st.warning("No overview image found. Please add an image to `images/` directory.")
 
-    # Example Plot
-    x = range(10)
-    y = [i**2 for i in x]
-
-    fig, ax = plt.subplots()
-    ax.plot(x, y)
-    ax.set_title("Sample Plot")
-
-    # Save and show the plot
-    plot_path = os.path.join(plot_dir, "sample_plot.png")
-    fig.savefig(plot_path)
-    st.pyplot(fig)
-
     # create plot of 2020 transaction count vs 2021 transaction count of df by month
     df['trans_datetime'] = pd.to_datetime(df['trans_datetime'])
     df['trans_year'] = df['trans_datetime'].dt.year
