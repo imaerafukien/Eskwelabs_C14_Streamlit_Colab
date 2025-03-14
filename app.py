@@ -378,16 +378,10 @@ elif menu == "Proof of Concept":
     st.info("**Benefits**  \nProvide clear credit card options upfront, minimizing consultation time and accelerating customer acquisition.")
     st.divider()
     st.subheader("Credit Card Recommendation System")
-    st.markdown("""
-    - **User Input**  \nCustomers enter income and spending habits via the app or website.
-
-    - **Data Processing**  \nThe system processes customer data using regression model.
-
-    - **Tailored Recommendation**  \nBest credit card options are suggested.
-
-    - **Application Next Steps**  \nCustomers can apply immediately or request a callback.
-
-    """)
+    st.markdown("- **User Input**  \nCustomers enter income and spending habits via the app or website.")
+    st.markdown("- **Data Processing**  \nThe system processes customer data using regression model.")
+    st.markdown("- **Tailored Recommendation**  \nBest credit card options are suggested.")
+    st.markdown("- **Application Next Steps**  \nCustomers can apply immediately or request a callback.")
 
 # Footer
 st.sidebar.write("Developed using Streamlit")
