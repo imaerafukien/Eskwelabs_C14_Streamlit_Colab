@@ -203,34 +203,29 @@ elif menu == "Results":
     month_map = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
                 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
     df_2020_2021['month_name'] = df_2020_2021['month'].map(month_map)
-    
-    st.write(df_2020_2021)
-    # Create line chart with Altair
-    chart = alt.Chart(df_2020_2021).mark_line(point=True).encode(
+
+    # Create line chart with explicit layering for each year
+    base = alt.Chart(df_2020_2021).encode(
         x=alt.X('month_name:N', 
                 title='Month', 
-                sort=list(month_map.values()),  # Ensure Jan-Dec order
-                axis=alt.Axis(labelAngle=0)),  # Horizontal labels
+                sort=list(month_map.values()), 
+                axis=alt.Axis(labelAngle=0)),
         y=alt.Y('trans_count:Q', title='Transaction Count'),
+        tooltip=['month_name', 'trans_count', 'year']
+    )
+
+    line = base.mark_line(point=True).encode(
         color=alt.Color('year:N', 
                         title='Year', 
-                        scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e'])),
-        tooltip=['month_name', 'trans_count', 'year']
+                        scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e']))
     ).properties(
         width=600,
         height=400,
         title='Transaction Counts by Month (2020-2021)'
     )
-    # Check chart object
-    st.write("Chart object created:", chart is not None)
 
-    # Try rendering a simple chart to test Altair/Streamlit
-    simple_chart = alt.Chart(df_2020_2021).mark_point().encode(
-        x='month_name:N',
-        y='trans_count:Q'
-    )
-    st.altair_chart(simple_chart, use_container_width=True)
-    st.altair_chart(chart, use_container_width=True)
+    # Display chart
+    st.altair_chart(line, use_container_width=True)
 
 
 
