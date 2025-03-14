@@ -389,7 +389,7 @@ elif menu == "Proof of Concept":
     )
     with st.expander("**Demographic Profile**"):
       st.markdown("- Age")
-      st.markdown(" Age Group/Generation")
+      st.markdown("- Age Group/Generation")
       st.markdown("- Date of Birth")
       st.markdown("- Home Address/Transaction Location")    
     with st.expander("**Financial Profile**"):
@@ -397,11 +397,14 @@ elif menu == "Proof of Concept":
       st.markdown("- Monthly Income")
       st.markdown("- Assets")
       st.markdown("- Liabilities")
-      st.markdown("occupation, monthly income, assets, liabilities")
     with st.expander("**Spending Habits**"):
-      st.markdown("transaction recency, tenure & frequency, amount spending, transaction categories, customer lifetime value")
+      st.markdown("- Transaction Recency")
+      st.markdown("- Tenure & Frequency")
+      st.markdown("- Amount Spending")
+      st.markdown("- Transaction Categories")
+      st.markdown("- Customer Lifetime Value")
     with st.expander("**Customer Segmentation**"):
-      st.markdown("Identify best customer segment through regression model")
+      st.markdown("- Identify best customer segment through regression model")
 
 
 # Footer
