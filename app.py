@@ -355,7 +355,7 @@ elif menu == "Results":
 
     # Create DataFrame with string descriptions
     rfm_df_string = pd.DataFrame(data)
-    st.write(rfm_df_string)
+    st.table(rfm_df_string)
   
 
 # Recommendations Section
