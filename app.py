@@ -39,14 +39,9 @@ else:
 # Overall Section
 if menu == "Overall":
     st.title("Overall Summary")
-    st.write("This is an overview of the project.")
+    st.write("For most of 2021, Adobo Bank had sustained growth. In November, usage of their cards decreased significantly.")
 
-    # Display an image from images folder
-    #overall_img_path = os.path.join(image_dir, "logo.png")
-    #if os.path.exists(overall_img_path):
-        #st.image(overall_img_path, caption="Project Overview", use_container_width=True)
-    #else:
-        #st.warning("No overview image found. Please add an image to `images/` directory.")
+
     df = pd.read_csv('data/cc_clean.csv')
     # create img of line plot of 2020 transaction count vs 2021 transaction count of df by month from jan to dec, convert month number and use 3 letters for months in the label
     df['trans_datetime'] = pd.to_datetime(df['trans_datetime'])
@@ -64,6 +59,10 @@ if menu == "Overall":
     plt.title('2020 vs 2021 Transaction Count by Month')
     plt.savefig('plots/overall_plot.png')
     st.image('plots/overall_plot.png')
+
+    st.write("“What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?”")
+    st.write("“How can we strategically target underserved markets or demographics to acquire new customers and grow our market share?”")
+
 
 # Introduction Section
 elif menu == "Introduction":
