@@ -185,17 +185,24 @@ elif menu == "Results":
     df_2020.columns = ['month', 'trans_num', 'year']
     df_2021.columns = ['month', 'trans_num', 'year']
     df_2020_2021 = pd.concat([df_2020, df_2021])
-    chart = alt.Chart(df_2020_2021).mark_bar().encode(
-        x=alt.X('month:O', title='Month'),
+
+    # Add month names
+    month_map = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
+                7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
+    df_2020_2021['month_name'] = df_2020_2021['month'].map(month_map)
+
+    # Create line chart
+    chart = alt.Chart(df_2020_2021).mark_line().encode(
+        x=alt.X('month_name:N', title='Month', sort=list(month_map.values())),
         y=alt.Y('trans_num:Q', title='Transaction Count'),
         color=alt.Color('year:N', title='Year', scale=alt.Scale(domain=['2020', '2021'], range=['#1f77b4', '#ff7f0e'])),
-        tooltip=['month', 'trans_num']
+        tooltip=['month_name', 'trans_num', 'year']
     ).properties(
         width=600,
         height=400
     )
     st.altair_chart(chart, use_container_width=True)
-    
+
 
 
 
