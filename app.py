@@ -134,6 +134,7 @@ elif menu == "Results":
         height=400,
         title='Account Distribution by Generation'
     )
+    st.altair_chart(chart, use_container_width=True)
     st.write("Population Age Mean: ", rfm_df['age'].mean().round(2))
     st.write("Population Age Min: ", rfm_df['age'].min())
     st.write("Population Age Max: ", rfm_df['age'].max())
