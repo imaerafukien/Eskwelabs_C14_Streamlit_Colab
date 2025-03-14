@@ -201,8 +201,8 @@ elif menu == "Results":
     df_2020_2021['month_name'] = df_2020_2021['month'].map(month_map)
 
     # Debug data
-    st.write("Final df_2020_2021:")
-    st.write(df_2020_2021)
+    #st.write("Final df_2020_2021:")
+    #st.write(df_2020_2021)
 
     # Ensure data types
     df_2020_2021['trans_count'] = df_2020_2021['trans_count'].astype(int)
