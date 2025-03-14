@@ -387,8 +387,8 @@ elif menu == "Proof of Concept":
     "<h3 style='text-align: center;'>Machine Learning Classification Model for Personalized Credit Card Type Recommendations</h3>",
     unsafe_allow_html=True
     )
-    with st.expander("**Demographic Profile**"):
-      st.markdown("""- Age  \n
+    st.markdown("""**Demographic Profile**  \n
+      - Age
       - Age Group/Generation
       - Date of Birth
       - Home Address/Transaction Location""")
