@@ -39,29 +39,9 @@ else:
 # Overall Section
 if menu == "Overall":
     st.title("Overall Summary")
-    st.write("For most of 2021, Adobo Bank had sustained growth. In November, usage of their cards decreased significantly.")
-
-
-    #df = pd.read_csv('data/cc_clean.csv')
-    # create img of line plot of 2020 transaction count vs 2021 transaction count of df by month from jan to dec, convert month number and use 3 letters for months in the label
-    df['trans_datetime'] = pd.to_datetime(df['trans_datetime'])
-    df['trans_month'] = df['trans_datetime'].dt.month
-    df['trans_year'] = df['trans_datetime'].dt.year
-    df_2020 = df[df['trans_year'] == 2020]
-    df_2021 = df[df['trans_year'] == 2021]
-    df_2020_month_count = df_2020.groupby('trans_month')['trans_num'].count()
-    df_2021_month_count = df_2021.groupby('trans_month')['trans_num'].count()
-    df_2020_month_count.plot(kind='line', label='2020')
-    df_2021_month_count.plot(kind='line', label='2021')
-    plt.legend()
-    plt.xlabel('Month')
-    plt.ylabel('Transaction Count')
-    plt.title('2020 vs 2021 Transaction Count by Month')
-    plt.savefig('plots/overall_plot.png')
-    st.image('plots/overall_plot.png', width=750)
-
-    st.write("“What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?”")
-    st.write("“How can we strategically target underserved markets or demographics to acquire new customers and grow our market share?”")
+    st.markdown('**Adobo Bank wants to expand their current CC offerings by understanding their customer segments.**')
+    st.info("“What strategies can we adopt to boost card activation, transaction frequency, and spending volume among our existing customers?”")
+    st.info("“How can we strategically target underserved markets or demographics to acquire new customers and grow our market share?”")
 
 
 # Introduction Section
