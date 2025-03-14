@@ -1,7 +1,4 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import os
 
 # Set page title
 st.set_page_config(page_title="My Streamlit App", layout="wide")
@@ -27,7 +24,7 @@ if menu == "Overall":
     # Display an image from images folder
     overall_img_path = os.path.join(image_dir, "logo.png")
     if os.path.exists(overall_img_path):
-        st.image(overall_img_path, caption="Project Overview", use_column_width=True)
+        st.image(overall_img_path, caption="Project Overview", use_container_width=True)
     else:
         st.warning("No overview image found. Please add an image to `images/` directory.")
 
