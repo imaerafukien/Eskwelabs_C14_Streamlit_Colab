@@ -122,7 +122,7 @@ elif menu == "Results":
     # generate bar graph showing acct_num count by generation
     st.subheader("Demographic Profile of Adobo Bank Customers")
     st.bar_chart(rfm_df['generation'].value_counts())
-    st.write("Population Age Mean: ", rfm_df['age'].mean())
+    st.write("Population Age Mean: ", rfm_df['age'].mean().round(2))
     st.write("Population Age Min: ", rfm_df['age'].min())
     st.write("Population Age Max: ", rfm_df['age'].max())
     st.caption("Out of 88 unique customers, majority of Adobo Bank Customers belong in the Baby Boomer Generation (52 customers). ")
@@ -130,8 +130,11 @@ elif menu == "Results":
     st.divider()
     # create a horizontal bar graph of value_counts of category_group in df, sort highest to lowest use plt
     st.subheader("Customer Total Transaction Counts per Category")
-    sorted_df = df['category_group'].value_counts(ascending=False)
-    st.bar_chart(sorted_df)
+    df['category_group'].value_counts().plot(kind='barh')
+   # st.write(alt.Chart(df).mark_bar().encode(
+    #x=alt.X('category', sort=None),
+    #y='sports_teams',
+    #))
     st.caption("Most transactions are in the shopping & micellaneous category followed by home & family, then food & essentials")
     st.divider()
     
