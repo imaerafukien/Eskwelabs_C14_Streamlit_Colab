@@ -56,7 +56,7 @@ if menu == "Overall":
     df_2021 = df[df['trans_year'] == 2021]
     df_2020_count = df_2020.groupby('trans_month')['trans_num'].count()
     df_2021_count = df_2021.groupby('trans_month')['trans_num'].count()
-    fig, ax = plt.subplots
+    fig, ax = plt.subplots()
     df_2020_count.plot(kind='bar', label='2020', ax=ax)
     df_2021_count.plot(kind='bar', label='2021', ax=ax)
     ax.set_xlabel('Month')
@@ -64,7 +64,7 @@ if menu == "Overall":
     ax.set_title('2020 vs 2021 Transaction Count by Month')
     ax.legend()
     st.pyplot(fig)
-    
+
 # Introduction Section
 elif menu == "Introduction":
     st.title("Introduction")
