@@ -141,7 +141,7 @@ elif menu == "Results":
     height=400
     )
     st.altair_chart(chart, use_container_width=True)
-    st.caption("Most transactions are in the shopping & micellaneous category followed by home & family, then food & essentials")
+    st.caption("Most transactions are in the shopping & micellaneous category followed by home & family tied with food & essentials")
     st.divider()
     
 
