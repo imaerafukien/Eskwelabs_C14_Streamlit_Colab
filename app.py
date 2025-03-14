@@ -112,7 +112,7 @@ elif menu == "Results":
     df['age'] = 2022 - pd.to_datetime(df['dob'], format='%d/%m/%Y').dt.year
     df['yob'] = pd.to_datetime(df['dob'], format='%d/%m/%Y').dt.year
     rfm_df = rfm_df.merge(df[['acct_num','yob']], on='acct_num', how='left')
-    df['generation'] = pd.cut(df['yob'], bins=[1901, 1927, 1945, 1964, 1981], labels=['Greatest', 'Silent', 'Baby Boomer', 'Gen X'])
+    df['generation'] = pd.cut(rfm_df['yob'], bins=[1901, 1927, 1945, 1964, 1981], labels=['Greatest', 'Silent', 'Baby Boomer', 'Gen X'])
     #generate bar graph showing acct_num count by generation
     st.subheader("Customer Age Profile")
     st.bar_chart(df['generation'].value_counts())
