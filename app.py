@@ -230,8 +230,8 @@ elif menu == "Results":
 
     # Display chart
     st.altair_chart(line, use_container_width=True)
-    st.caption("December 2021 data is cut short at Dec 8 which coul be the reason for the sudden drop")
-    st.caption("There is a clear seasonality in spending behavior")
+    st.caption("December 2021 data is cut short at Dec 8 which could be the reason for the sudden drop")
+    st.caption("There is clear seasonality in spending behavior")
     st.divider()
     st.subheader("Total Amount Spent per Month (2020-2021)")
     df['trans_date'] = pd.to_datetime(df['trans_datetime'])
@@ -291,8 +291,8 @@ elif menu == "Results":
 
     # Display chart
     st.altair_chart(line, use_container_width=True)
-    st.caption("December 2021 data is cut short at Dec 8 which coul be the reason for the sudden drop")
-    st.caption("There is a clear seasonality in spending behavior")
+    st.caption("December 2021 data is cut short at Dec 8 which could be the reason for the sudden drop")
+    st.caption("There is clear seasonality in spending behavior")
     st.divider()
 
     # Create visualization for the k means clustering
@@ -339,7 +339,10 @@ elif menu == "Results":
     # Debug: Show the data
     #st.write("Cluster Means (Normalized, Recency Inverted):")
     #st.write(cluster_means_long)
-
+    st.divider()
+    st.subheader("Cluster Analysis")
+    st.write("We labeled each cluster according to their spending habit")
+    st.write(df)
 
 # Recommendations Section
 elif menu == "Recommendations":
