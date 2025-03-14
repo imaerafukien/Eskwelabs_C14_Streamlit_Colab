@@ -173,7 +173,7 @@ elif menu == "Results":
     st.divider()
     # create line chart of 'trans_num' count by month for year 2020 and 2021 with Jan - Dec on the x-axis and 'trans_num' count on the y-axis, use alt
     st.subheader("Customer Transaction Count per Year")
-    df['trans_date'] = pd.to_datetime(df['trans_date'], format='%d/%m/%Y')
+    df['trans_date'] = pd.to_datetime(df['trans_datetime'])
     df['year'] = df['trans_date'].dt.year
     df['month'] = df['trans_date'].dt.month
     df_2020 = df[df['year'] == 2020]
