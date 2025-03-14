@@ -384,7 +384,10 @@ elif menu == "Proof of Concept":
     st.markdown("- **Application Next Steps**  \nCustomers can apply immediately or request a callback.")
     st.divider()
     st.subheader("Machine Learning Classification Model")
-    st.info("### Personalized Credit Card Type Recommendations Based On")
+    st.markdown(
+    "<h3 style='text-align: center;'>Personalized Credit Card Type Recommendations</h3>",
+    unsafe_allow_html=True
+    )
     with st.expander("**Demographic Profile**"):
       st.write("age, age group/ generation, date of birth, home address/ transaction location")
     with st.expander("**Financial Profile**"):
