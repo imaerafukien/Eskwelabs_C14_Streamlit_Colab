@@ -319,24 +319,19 @@ elif menu == "Results":
                                             value_name='normalized_mean')
 
     # Create faceted bar chart with narrower bars
-    chart = alt.Chart(cluster_means_long).mark_bar(size=10).encode(
+    chart = alt.Chart(cluster_means_long).mark_bar(size=20).encode(
         x=alt.X('labels_rfm_clustering:N', title='Cluster Label'),
         y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
         color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
         column=alt.Column('metric:N', title='Metric', 
                           sort=['recency', 'frequency', 'total_amt', 'avg_spend', "tenure", "clv", "city_pop"])
     ).properties(
-        width=40,  # Narrow facet width
+        width=160,  # Narrow facet width
         height=300,
         title='Normalized Mean Metrics by Cluster (Recency Inverted)'
     ).configure_axis(
         labelAngle=0  # Horizontal labels
-    ).configure_range(
-        category={'step': 20}  # Reduce spacing between bars
-    ).configure_facet(
-        spacing=5  # Reduce spacing between facets
     )
-
     # Display in Streamlit with fixed width
     st.subheader("K-Means Clustering: Mean Metrics by Cluster (Inverted Recency)")
     st.altair_chart(chart, use_container_width=False)
