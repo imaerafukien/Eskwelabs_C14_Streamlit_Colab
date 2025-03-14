@@ -119,9 +119,21 @@ elif menu == "Results":
     yob_df = yob_df.reset_index()
     rfm_df = rfm_df.merge(yob_df[['acct_num','yob','age']], on='acct_num', how='left')
     rfm_df['generation'] = pd.cut(rfm_df['yob'], bins=[1901, 1927, 1945, 1964, 1981], labels=['Greatest', 'Silent', 'Baby Boomer', 'Gen X'])
-    # generate bar graph showing acct_num count by generation
+    # generate bar graph showing acct_num count by generation using alt
     st.subheader("Demographic Profile of Adobo Bank Customers")
-    st.bar_chart(rfm_df['generation'].value_counts())
+    gen_counts = rfm_df['generation'].value_counts().reset_index()
+    gen_counts.columns = ['generation', 'account_count']
+
+    # Create Altair bar graph
+    chart = alt.Chart(gen_counts).mark_bar().encode(
+        x=alt.X('generation:N', title='Generation', sort=['Greatest', 'Silent', 'Baby Boomer', 'Gen X']),
+        y=alt.Y('account_count:Q', title='Number of Accounts'),
+        tooltip=['generation', 'account_count']  # Optional: show details on hover
+    ).properties(
+        width=500,
+        height=400,
+        title='Account Distribution by Generation'
+    )
     st.write("Population Age Mean: ", rfm_df['age'].mean().round(2))
     st.write("Population Age Min: ", rfm_df['age'].min())
     st.write("Population Age Max: ", rfm_df['age'].max())
