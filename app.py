@@ -364,12 +364,15 @@ elif menu == "Results":
 
 # Proof of Concept Section
 elif menu == "Proof of Concept":
-    st.title("Recommendations")
-    st.write("Provide insights and future recommendations.")
-
-    user_recommendation = st.text_area("Write your recommendation...")
-    if st.button("Submit Recommendation"):
-        st.success("Recommendation submitted!")
+    st.title("Proof of Concept")
+    st.subheader("How can Adobo Bank effectively tailor its expanded credit card offerings to better serve its customers?")
+    st.write("Develop a system that efficiently provides personalized credit card recommendations to customers based on their financial profile, spending habits, and the bank’s customer segmentation framework.")
+    st.divider()
+    st.subheader("Personalized Credit Card Recommendation Model")
+    st.info("**Objective**  \nDevelop a system for personalized credit card recommendations based on customers' financial profiles & spending habits.")
+    st.info("**Approach**  \nUse regression analysis to match customers with the best credit card options.")
+    st.info("**Channels**  \nAdobo Bank App & Website: New and existing customers can enter their income and spending habits to receive personalized credit card recommendations instantly.")
+    st.info("**Benefits**  \nProvide clear credit card options upfront, minimizing consultation time and accelerating customer acquisition.")
 
 # Footer
 st.sidebar.write("Developed using Streamlit")
