@@ -388,7 +388,7 @@ elif menu == "Proof of Concept":
     unsafe_allow_html=True
     )
     with st.expander("**Demographic Profile**"):
-      st.markdown("""- Age
+      st.markdown("""- Age  \n
       - Age Group/Generation
       - Date of Birth
       - Home Address/Transaction Location""")
