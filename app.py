@@ -299,7 +299,7 @@ elif menu == "Results":
     st.subheader("Customer Segmentation")
     st.write("We segmented our customers using the k means clustering algorithm")
     st.caption("Only numerical features were used for clustering: recency, frequency, total_amt, avg_spend, tenure, clv, city_pop ")
-   cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
+    cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
                                                          "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
 
     # Normalize means to 0-1
