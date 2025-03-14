@@ -47,7 +47,7 @@ if menu == "Overall":
         #st.image(overall_img_path, caption="Project Overview", use_container_width=True)
     #else:
         #st.warning("No overview image found. Please add an image to `images/` directory.")
-    df = pd.read_csv(cc_clean_path)
+    df = pd.read_csv('data/cc_clean.csv')
     # create plot of 2020 transaction count vs 2021 transaction count of df by month, use words for month like jan, feb, mar, etc.
     df['trans_datettime']
 
