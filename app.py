@@ -23,7 +23,7 @@ os.makedirs(plot_dir, exist_ok=True)
 cc_clean_path = os.path.join(data_dir, "cc_clean.csv")
 if os.path.exists(cc_clean_path):
     df = pd.read_csv(cc_clean_path)
-    st.dataframe(df)
+    #st.dataframe(df)
 else:
     st.warning("No data file found. Please add a CSV file to `data/` directory.")
 
