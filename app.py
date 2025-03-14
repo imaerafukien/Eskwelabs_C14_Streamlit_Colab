@@ -388,13 +388,16 @@ elif menu == "Proof of Concept":
     unsafe_allow_html=True
     )
     with st.expander("**Demographic Profile**"):
-      st.write("age, age group/ generation, date of birth, home address/ transaction location")
+      st.markdown("""- Age
+      - Age Group/Generation
+      - Date of Birth
+      - Home Address/Transaction Location""")
     with st.expander("**Financial Profile**"):
-      st.write("occupation, monthly income, assets, liabilities")
+      st.markdown("occupation, monthly income, assets, liabilities")
     with st.expander("**Spending Habits**"):
-      st.write("transaction recency, tenure & frequency, amount spending, transaction categories, customer lifetime value")
+      st.markdown("transaction recency, tenure & frequency, amount spending, transaction categories, customer lifetime value")
     with st.expander("**Customer Segmentation**"):
-      st.write("Identify best customer segment through regression model")
+      st.markdown("Identify best customer segment through regression model")
 
 
 # Footer
