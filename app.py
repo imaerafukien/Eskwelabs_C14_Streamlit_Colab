@@ -302,7 +302,7 @@ elif menu == "Results":
     cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
                                                          "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
 
-    # Normalize means
+    # Normalize means to 0-1
     for col in ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]:
         cluster_means[col] = (cluster_means[col] - cluster_means[col].min()) / (cluster_means[col].max() - cluster_means[col].min())
 
@@ -312,25 +312,64 @@ elif menu == "Results":
                                             var_name='metric', 
                                             value_name='normalized_mean')
 
-    # Create parallel coordinates plot
-    chart = alt.Chart(cluster_means_long).mark_line(point=True).encode(
-        x=alt.X('metric:N', title='Metric', 
-                sort=['recency', 'frequency', 'total_amt', 'avg_spend', 'tenure', 'clv', 'city_pop']),
-        y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
-        color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
-        detail='labels_rfm_clustering:N',  # Ensures one line per cluster
-        tooltip=['labels_rfm_clustering', 'metric', 'normalized_mean']
-    ).properties(
-        width=600,
-        height=400,
-        title='Parallel Coordinates: Cluster Profiles'
-    ).configure_axis(
-        labelAngle=45  # Tilt labels for readability
-    ).interactive()
+    # Assign theta (angle) values for each metric (evenly spaced around the circle)
+    metrics = ["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"]
+    theta_map = {metric: i * 2 * np.pi / len(metrics) for i, metric in enumerate(metrics)}
+    cluster_means_long['theta'] = cluster_means_long['metric'].map(theta_map)
 
-    # Display
-    st.subheader("K-Means Clustering: Parallel Coordinates")
-    st.altair_chart(chart, use_container_width=True)
+    # Duplicate the first metric to close the loop for each cluster
+    for cluster in cluster_means_long['labels_rfm_clustering'].unique():
+        first_row = cluster_means_long[(cluster_means_long['labels_rfm_clustering'] == cluster) & 
+                                      (cluster_means_long['metric'] == metrics[0])].copy()
+        cluster_means_long = pd.concat([cluster_means_long, first_row])
+
+    # Sort by cluster and theta to ensure proper line connection
+    cluster_means_long = cluster_means_long.sort_values(['labels_rfm_clustering', 'theta'])
+
+    # Create spider chart
+    base = alt.Chart(cluster_means_long).encode(
+        theta=alt.Theta('theta:Q', scale=alt.Scale(domain=[0, 2 * np.pi])),
+        radius=alt.Radius('normalized_mean:Q', scale=alt.Scale(domain=[0, 1])),
+        color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
+        detail='labels_rfm_clustering:N'  # Ensures one continuous line per cluster
+    )
+
+    # Lines and points
+    spider_lines = base.mark_line().encode(
+        order='theta:Q'  # Ensures correct order around the circle
+    )
+    spider_points = base.mark_point(size=50).encode(
+        tooltip=['labels_rfm_clustering', 'metric', 'normalized_mean']
+    )
+
+    # Combine chart
+    chart = (spider_lines + spider_points).properties(
+        width=500,
+        height=500,
+        title='Spider Chart: Normalized Mean Metrics by Cluster'
+    ).configure_scale(
+        bandPaddingInner=0.1
+    ).configure_view(
+        strokeWidth=0  # Remove border
+    )
+
+    # Add metric labels (approximate positions)
+    metric_labels = alt.Chart(pd.DataFrame({
+        'metric': metrics,
+        'theta': [theta_map[m] for m in metrics],
+        'radius': [1.1] * len(metrics)  # Slightly outside the circle
+    })).mark_text(align='center', baseline='middle').encode(
+        theta='theta:Q',
+        radius='radius:Q',
+        text='metric:N'
+    )
+
+    # Final chart with labels
+    final_chart = (chart + metric_labels)
+
+    # Display in Streamlit
+    st.subheader("K-Means Clustering: Spider Chart")
+    st.altair_chart(final_chart, use_container_width=True)
 
 
 # Recommendations Section
