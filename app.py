@@ -384,8 +384,11 @@ elif menu == "Proof of Concept":
     st.markdown("- **Application Next Steps**  \nCustomers can apply immediately or request a callback.")
     st.divider()
     st.subheader("Machine Learning Classification Model")
-    with st.info("**Personalized Credit Card Type Recommendations**"):
-      st.info("****  \n")
+    with st.expander("**Personalized Credit Card Type Recommendations**"):
+      st.info("**Demographic Profile**  \nage, age group/ generation, date of birth, home address/ transaction location")
+      st.info("**Financial Profile**  \noccupation, monthly income, assets, liabilities")
+      st.info("**Spending Habits**  \ntransaction recency, tenure & frequency, amount spending, transaction categories, customer lifetime value")
+      st.info("**Customer Segmentation**  \nIdentify best customer segment through regression model")
 
 
 # Footer
