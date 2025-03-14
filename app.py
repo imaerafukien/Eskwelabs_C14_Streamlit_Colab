@@ -9,7 +9,7 @@ st.set_page_config(page_title="My Streamlit App", layout="wide")
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
-menu = st.sidebar.radio("Go to", ["Overall", "Introduction", "Methodology", "Results", "Recommendations"])
+menu = st.sidebar.radio("Go to", ["Overall", "Introduction", "Methodology", "Scope & Limitations","Results", "Recommendations"])
 
 # Ensure directories exist
 data_dir = "data"
@@ -81,8 +81,15 @@ elif menu == "Methodology":
     - **Step 4**: Cluster Analysis
 
     - **Step 5**: Interpretation and Recommendations
-    
+
     """)
+
+# Scope & Limitations
+elif menu == "Scope & Limitations":
+    st.title("Data Preprocessing and Scope & Limitations")
+
+    st.header("")
+    st.subheader("")
 
 # Results Section
 elif menu == "Results":
