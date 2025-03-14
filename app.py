@@ -172,7 +172,6 @@ elif menu == "Results":
     st.caption("Most transactions are in the shopping & micellaneous category followed by food & essentials, then by home & family category")
     st.divider()
     # create line chart of 'trans_num' count by month for year 2020 and 2021 with Jan - Dec on the x-axis and 'trans_num' count on the y-axis, use alt
-    st.write(df)
     st.subheader("Customer Transaction Count per Year")
     df['trans_date'] = pd.to_datetime(df['trans_datetime'])  # Ensure trans_datetime is datetime type
     df['year'] = df['trans_date'].dt.year
@@ -205,6 +204,7 @@ elif menu == "Results":
                 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
     df_2020_2021['month_name'] = df_2020_2021['month'].map(month_map)
 
+    st.write(df_2020_2021)
     # Create line chart with Altair
     chart = alt.Chart(df_2020_2021).mark_line(point=True).encode(
         x=alt.X('month_name:N', 
