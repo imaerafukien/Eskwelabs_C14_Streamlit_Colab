@@ -295,7 +295,39 @@ elif menu == "Results":
     st.caption("There is a clear seasonality in spending behavior")
     st.divider()
 
+    # create visualization for the k means clustering of rfm_df cc_rfm_df.groupby('labels_rfm_clustering')[["recency","frequency","total_amt", "avg_spend", "tenure", "clv", "city_pop"]].mean()
+    # Group by cluster labels and calculate means
+    cluster_means = rfm_df.groupby('labels_rfm_clustering')[["recency", "frequency", "total_amt", 
+                                                            "avg_spend", "tenure", "clv", "city_pop"]].mean().reset_index()
 
+    # Debug: Display the aggregated data
+    st.write("Cluster Means:")
+    st.write(cluster_means)
+
+    # Melt the DataFrame to long format for easier plotting with Altair
+    cluster_means_long = cluster_means.melt(id_vars=['labels_rfm_clustering'], 
+                                            value_vars=["recency", "frequency", "total_amt", "avg_spend", "tenure", "clv", "city_pop"],
+                                            var_name='metric', 
+                                            value_name='mean_value')
+
+    # Create a grouped bar chart
+    chart = alt.Chart(cluster_means_long).mark_bar().encode(
+        x=alt.X('labels_rfm_clustering:N', title='Cluster Label'),
+        y=alt.Y('mean_value:Q', title='Mean Value'),
+        color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
+        column=alt.Column('metric:N', title='Metric', 
+                          sort=['recency', 'frequency', 'total_amt', 'avg_spend', 'tenure', 'clv', 'city_pop']),
+        tooltip=['labels_rfm_clustering', 'metric', 'mean_value']
+    ).properties(
+        width=150,  # Width per facet
+        height=400,
+        title='Mean Metrics by K-Means Cluster'
+    ).configure_axis(
+        labelAngle=0  # Horizontal labels
+    )
+
+    # Display in Streamlit
+    st.altair_chart(chart, use_container_width=True)
 
 
 # Recommendations Section
