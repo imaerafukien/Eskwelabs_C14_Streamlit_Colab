@@ -48,19 +48,22 @@ if menu == "Overall":
     #else:
         #st.warning("No overview image found. Please add an image to `images/` directory.")
     df = pd.read_csv('data/cc_clean.csv')
-    # create plot of 2020 transaction count vs 2021 transaction count of df by month, convert month number to 3 letters before plotting img
-    df['trans_month'] = df['trans_month'].apply(lambda x: pd.to_datetime(x, format='%m').strftime('%b'))
+    # create line plot of 2020 transaction count vs 2021 transaction count of df by month from jan to dec
+    df['trans_datetime'] = pd.to_datetime(df['trans_datetime'])
+    df['trans_year'] = df['trans_datetime'].dt.year
+    df['trans_month'] = df['trans_datetime'].dt.month
     df_2020 = df[df['trans_year'] == 2020]
     df_2021 = df[df['trans_year'] == 2021]
-    df_2020_month_count = df_2020.groupby('trans_month')['trans_num'].count()
-    df_2021_month_count = df_2021.groupby('trans_month')['trans_num'].count()
-    df_month_count = pd.concat([df_2020_month_count, df_2021_month_count], axis=1)
-    df_month_count.columns = ['2020', '2021']
-    df_month_count.plot(kind='line', figsize=(10,5))
-    plt.title('2020 vs 2021 Transaction Count by Month')
-    plt.xlabel('Month')
-    plt.ylabel('Transaction Count')
-
+    df_2020_monthly = df_2020.groupby('trans_month')['trans_num'].count()
+    df_2021_monthly = df_2021.groupby('trans_month')['trans_num'].count()
+    fig, ax = plt.subplots()
+    ax.plot(df_2020_monthly.index, df_2020_monthly.values, label='2020')
+    ax.plot(df_2021_monthly.index, df_2021_monthly.values, label='2021')
+    ax.set_xlabel('Month')
+    ax.set_ylabel('Transaction Count')
+    ax.set_title('2020 vs 2021 Transaction Count by Month')
+    ax.legend()
+    st.pyplot(fig)
 
 
 # Introduction Section
