@@ -57,8 +57,8 @@ if menu == "Overall":
     df_2021 = df[df['trans_year'] == 2021]
     df_2020 = df_2020.groupby('trans_month')['trans_num'].count()
     df_2021 = df_2021.groupby('trans_month')['trans_num'].count()
-    df_2020.plot(kind='bar', label='2020')
-    df_2021.plot(kind='bar', label='2021')
+    df_2020.plot(kind='line', label='2020')
+    df_2021.plot(kind='line', label='2021')
     plt.legend()
     plt.title('Transaction Count by Month')
     plt.xlabel('Month')
