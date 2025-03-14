@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+import altair as alt
 
 # Set page title
 st.set_page_config(page_title="My Streamlit App", layout="wide")
@@ -121,7 +122,9 @@ elif menu == "Results":
     # generate bar graph showing acct_num count by generation
     st.subheader("Demographic Profile of Adobo Bank Customers")
     st.bar_chart(rfm_df['generation'].value_counts())
-    st.write(rfm_df['age'].describe())
+    st.write("Population Age Mean: ", rfm_df['age'].mean())
+    st.write("Population Age Min: ", rfm_df['age'].min())
+    st.write("Population Age Max: ", rfm_df['age'].max())
     st.caption("Out of 88 unique customers, majority of Adobo Bank Customers belong in the Baby Boomer Generation (52 customers). ")
     st.caption("All of Adobo Bank's customers are over 52 years old")
     st.divider()
