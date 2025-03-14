@@ -115,7 +115,7 @@ elif menu == "Results":
     df['yob'] = pd.to_datetime(df['dob'], format='%d/%m/%Y').dt.year
     yob_df = df.groupby('acct_num').agg({'yob':'max','age':'max'})
     yob_df = yob_df.reset_index()
-    rfm_df = rfm_df.merge(yob_df[['acct_num','yob']], on='acct_num', how='left')
+    rfm_df = rfm_df.merge(yob_df[['acct_num','yob','age']], on='acct_num', how='left')
     rfm_df['generation'] = pd.cut(rfm_df['yob'], bins=[1901, 1927, 1945, 1964, 1981], labels=['Greatest', 'Silent', 'Baby Boomer', 'Gen X'])
     # generate bar graph showing acct_num count by generation
     st.subheader("Demographic Profile of Adobo Bank Customers")
