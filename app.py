@@ -49,17 +49,14 @@ elif menu == "Introduction":
     st.title("Introduction")
     st.write("Project background and objectives.")
 
-    df = [{'A': 1, 'B':2, 'C':3}]
+    cc_clean_path = os.path.join(data_dir, "cc_clean.csv")
+    if os.path.exists(cc_clean_path):
+        df = pd.read_csv(cc_clean_path)
+        st.dataframe(df)
+    else
+        st.warning("No data file found. Please add a CSV file to `data/` directory.")
     st.dataframe(df)
-    '''
-    # Upload an image (stored in images/)
-    uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
-    if uploaded_file:
-        with open(os.path.join(image_dir, uploaded_file.name), "wb") as f:
-            f.write(uploaded_file.getbuffer())
-        st.success("Image saved!")
-        st.image(uploaded_file, use_column_width=True)
-    '''
+    
 # Methodology Section
 elif menu == "Methodology":
     st.title("Methodology")
