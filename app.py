@@ -324,7 +324,7 @@ elif menu == "Results":
         y=alt.Y('normalized_mean:Q', title='Normalized Mean (0-1)', scale=alt.Scale(domain=[0, 1])),
         color=alt.Color('labels_rfm_clustering:N', title='Cluster'),
         column=alt.Column('metric:N', title='Metric', 
-                          sort=['recency', 'frequency', 'monetary', 'average spend', "tenure", "clv", "city population"])
+                          sort=['recency', 'frequency', 'total_amt', 'avg_spend', "tenure", "clv", "city_pop"])
     ).properties(
         width=160,  # Narrow facet width
         height=300,
